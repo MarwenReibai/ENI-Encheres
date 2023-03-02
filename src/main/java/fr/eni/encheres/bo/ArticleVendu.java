@@ -1,4 +1,7 @@
 package fr.eni.encheres.bo;
+
+import java.util.Date;
+
 public abstract class ArticleVendu {
 	// instance attributes
 	private int noArticle;

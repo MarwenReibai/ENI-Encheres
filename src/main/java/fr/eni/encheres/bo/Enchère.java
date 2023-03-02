@@ -1,5 +1,7 @@
 package fr.eni.encheres.bo;
 
+import java.sql.Date;
+
 public class Enchère {
 	private Date dateEnchère;
 	private float montant_enchere;
@@ -32,5 +34,3 @@ public class Enchère {
 	}
 	
 	}
-
-	

@@ -3,7 +3,7 @@ package fr.eni.encheres.dal;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class UtilisateurDAOJdbcImpl {
+public class  ArticleVenduDAOjdbclmp {
 	
 	// attributes :
 	
@@ -11,11 +11,12 @@ public class UtilisateurDAOJdbcImpl {
 	
 	// loading connection :
 	
-	public UtilisateurDAOJdbcImpl() {
+	public ArticleVenduDAOjdbclmp() {
 		  try {
 			  
-
-			DriverManager.registerDriver( new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+	 		// loading connection :  
+			  
+			DriverManager.registerDriver(new SQLServerDriver());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -27,3 +28,4 @@ public class UtilisateurDAOJdbcImpl {
 	
 
 }
+
