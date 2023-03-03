@@ -8,7 +8,7 @@ public abstract class ArticleVendu {
 	private String nomArticle;
 	private String description;
 	private Date dateDebutEncheres;
-	private int dateFinEncheres;
+	private Date dateFinEncheres;
 	private float miseAPrix;
 	private float prixVente;
 	private String etatVente;
@@ -16,7 +16,7 @@ public abstract class ArticleVendu {
 	public ArticleVendu () {	
 	}
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			int dateFinEncheres, float miseAPrix, float prixVente, String etatVente) {
+			Date dateFinEncheres, float miseAPrix, float prixVente, String etatVente) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -52,10 +52,10 @@ public abstract class ArticleVendu {
 	public void setDateDebutEncheres(Date dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
-	public int getDateFinEncheres() {
+	public Date getDateFinEncheres() {
 		return dateFinEncheres;
 	}
-	public void setDateFinEncheres(int dateFinEncheres) {
+	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 	public float getMiseAPrix() {
