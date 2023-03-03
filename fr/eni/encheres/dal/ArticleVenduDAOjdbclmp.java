@@ -23,7 +23,7 @@ public class  ArticleVenduDAOjdbclmp {
 		public ArticleVenduDAOjdbclmp () {
 			
 		}
-		// Connection port 1433
+		// Connection avec port 1433
 		public Connection getConnection() throws SQLException {
 			if (connection == null || connection.isClosed()) {
 				String urldb = "jdbc:sqlserver://localhost:1433;databaseName=Encheres";
@@ -66,7 +66,7 @@ public class  ArticleVenduDAOjdbclmp {
 		public void update(ArticleVendu data) throws DALException {
 			try (Connection cnx = getConnection(); PreparedStatement rqt = cnx.prepareStatement(sqlUpdate);) {
 				setParameter(rqt, data);
-				rqt.setInt(2, data.getNoArticle()); // 2 num d'article , il faut extend class dans articleVendu
+				rqt.setInt(10, data.getNoArticle()); // 9 num d'article , il faut extend class dans articleVendu
 				rqt.executeUpdate();
 
 			} catch (SQLException e) {
@@ -98,7 +98,7 @@ public class  ArticleVenduDAOjdbclmp {
 
 		public void delete(int no) throws DALException {
 			try (Connection cnx = getConnection(); PreparedStatement rqt = cnx.prepareStatement(sqlDelete);) {
-				rqt.setInt(1, no); // num darticle
+				rqt.setInt(1, no); // num1?
 				rqt.executeUpdate();
 			} catch (SQLException e) {
 				throw new DALException("Delete article failed - no=" + no, e);
@@ -121,10 +121,10 @@ public class  ArticleVenduDAOjdbclmp {
 				rqt.setString(1, art.getNomArticle());
 				rqt.setString(2, art.getDescription());
 				rqt.setDate(3, (Date) art.getDateDebutEncheres());
-				rqt.setDate(4,  (Date) art.getDateFinEncheres());
+				rqt.setDate(4, (Date) art.getDateFinEncheres());
 				rqt.setFloat(5, art.getMiseAPrix());
-				rqt.setFloat(5, art.getPrixVente());
-				rqt.setString(5, art.getEtatVente());
+				rqt.setFloat(6, art.getPrixVente());
+				rqt.setString(7, art.getEtatVente());
 			}
 }
 
