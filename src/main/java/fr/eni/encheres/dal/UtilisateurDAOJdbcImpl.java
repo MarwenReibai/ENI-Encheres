@@ -17,7 +17,8 @@ public class UtilisateurDAOJdbcImpl {
 	
 	// loading connection :
 	
-	private static final String INSERT = "INSERT INTO utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,motDepasse,credit,admnistrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,mot_de_passe,credit,admnistrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String SELECT_BY_ID = "SELECT * FROM UTILISATEUR WHERE no_utilisateur = ?";
 
 	public UtilisateurDAOJdbcImpl() {
 		  try {
@@ -44,15 +45,61 @@ public class UtilisateurDAOJdbcImpl {
 			if (rs.next()) {
 				utilisateur.setNoUtilisateur(rs.getInt(1));
 			}
-			
+			JdbcTools.closeConnection();
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 		
 		
 	}
 	
-	// methodes :
+	
+	///////////////////////////////////////////////////////////////
+	
+	
+    public Utilisateur selectById(int id) throws DALException {
+    	
+    	Utilisateur utilisateur = null;
+    	
+    	try {
+    		PreparedStatement ps = JdbcTools.getConnection().prepareStatement(SELECT_BY_ID);
+    		ps.setInt(1, id);
+    		ps.execute();
+    		ResultSet rs = ps.getResultSet();
+    		if (rs.next()) {
+    			utilisateur = fillUtilisateur(rs);
+    		}
+    		JdbcTools.closeConnection();
+    	} catch (SQLException e){
+    		e.printStackTrace();
+    	}
+		return utilisateur;
+    	
+    }
+    
+    ///////////////////////////////////////////////////////////////
+
+    public Utilisateur selectByPseudo(String pseudo) throws DALException {
+    	
+    	Utilisateur utilisateur = null;
+    	
+    	try {
+    		PreparedStatement ps = JdbcTools.getConnection().prepareStatement(SELECT_BY_ID);
+    		ps.setString(1, pseudo);
+    		ps.execute();
+    		ResultSet rs = ps.getResultSet();
+    		if (rs.next()) {
+    			utilisateur = fillUtilisateur(rs);
+    		}
+    		JdbcTools.closeConnection();
+    	} catch (SQLException e){
+    		e.printStackTrace();
+    	}
+		return utilisateur;
+    	
+    }
+	
+	////////////////////////////////////// ---  METHODES --- /////////////////////////////////////
 	
     private void fillPreparedStatement(Utilisateur utilisateur, PreparedStatement ps) throws SQLException {
     	ps.setString(1, utilisateur.getPseudo());
@@ -67,6 +114,26 @@ public class UtilisateurDAOJdbcImpl {
         ps.setInt(10, utilisateur.getCredit());
         ps.setBoolean(11, utilisateur.isAdministrateur());
     }
+    
+
+
+	private Utilisateur fillUtilisateur(ResultSet rs) throws SQLException {
+		
+		return new Utilisateur(
+                rs.getInt("no_utilisateur"),
+                rs.getString("pseudo"),
+                rs.getString("nom"),
+                rs.getString("prenom"),
+                rs.getString("email"),
+                rs.getString("telephone"),
+                rs.getString("rue"),
+                rs.getString("code_postal"),
+                rs.getString("ville"),
+                rs.getString("mot_de_passe"),
+                rs.getInt("credit"),
+                rs.getBoolean("administrateur")
+				);
+	}
 	
 	
 
