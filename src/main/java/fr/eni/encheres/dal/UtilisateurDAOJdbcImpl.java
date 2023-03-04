@@ -9,7 +9,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
 import fr.eni.encheres.bo.Utilisateur;
 
-public class UtilisateurDAOJdbcImpl {
+public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	// attributes :
 	
