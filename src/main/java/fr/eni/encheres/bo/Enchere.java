@@ -1,5 +1,7 @@
 package fr.eni.encheres.bo;
 
+import java.util.Date;
+
 public class Enchere {
 	private Date dateEnchere;
 	private float montant_enchere;
@@ -27,7 +29,7 @@ public class Enchere {
 	}
 	//to string
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return "Enchere [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + "]";
 	}
 	

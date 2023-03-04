@@ -13,17 +13,16 @@ public class UtilisateurDAOJdbcImpl {
 	
 	// attributes :
 	
-	
+	private static final String INSERT = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,mot_de_passe,credit,admnistrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
+	private static final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+	private static final String UPDATE = "UPDATE UTILISATEURS SET "+"pseudo = ?"+"nom = ?"+"prenom = ?"+"email = ?"+"telephone = ?"+"rue = ?"+"code_postal = ?"+"ville = ?"+"mot_de_passe = ?"+"credit = ?"+"administrateur = ?"+"WHERE no_utilisateur = ?";
+	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ? ";
 	
 	// loading connection :
 	
-	private static final String INSERT = "INSERT INTO utilisateurs (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,mot_de_passe,credit,admnistrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_BY_ID = "SELECT * FROM UTILISATEUR WHERE no_utilisateur = ?";
-
 	public UtilisateurDAOJdbcImpl() {
 		  try {
-			  
-	 		// loading connection :  
 			  
 			DriverManager.registerDriver(new SQLServerDriver());
 
@@ -32,6 +31,8 @@ public class UtilisateurDAOJdbcImpl {
 		} 
 		  JdbcTools.closeConnection();
 	}
+	
+	///////////////////////////////////////////////////////////////
 	
 	public void insert(Utilisateur utilisateur) throws DALException {
 		
@@ -47,15 +48,13 @@ public class UtilisateurDAOJdbcImpl {
 			}
 			JdbcTools.closeConnection();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
 		
 		
 	}
 	
-	
 	///////////////////////////////////////////////////////////////
-	
 	
     public Utilisateur selectById(int id) throws DALException {
     	
@@ -84,7 +83,7 @@ public class UtilisateurDAOJdbcImpl {
     	Utilisateur utilisateur = null;
     	
     	try {
-    		PreparedStatement ps = JdbcTools.getConnection().prepareStatement(SELECT_BY_ID);
+    		PreparedStatement ps = JdbcTools.getConnection().prepareStatement(SELECT_BY_PSEUDO);
     		ps.setString(1, pseudo);
     		ps.execute();
     		ResultSet rs = ps.getResultSet();
@@ -99,7 +98,38 @@ public class UtilisateurDAOJdbcImpl {
     	
     }
 	
-	////////////////////////////////////// ---  METHODES --- /////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    
+    public void update(Utilisateur utilisateur) throws DALException {
+    	
+    	try {
+    		PreparedStatement ps = JdbcTools.getConnection().prepareStatement(UPDATE);
+    		fillPreparedStatement(utilisateur, ps);
+    		ps.setInt(12, utilisateur.getNoUtilisateur());
+    		ps.executeUpdate();
+    		
+    		JdbcTools.closeConnection();
+    		
+    	} catch (SQLException e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    ///////////////////////////////////////////////////////////////
+    
+    public void delete(Utilisateur utilisateur) throws DALException {
+    	try {
+			PreparedStatement ps = JdbcTools.getConnection().prepareStatement(DELETE);
+			ps.setInt(1, utilisateur.getNoUtilisateur());
+			ps.executeUpdate();
+			JdbcTools.closeConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    
+	// ---  METHODES --- :
 	
     private void fillPreparedStatement(Utilisateur utilisateur, PreparedStatement ps) throws SQLException {
     	ps.setString(1, utilisateur.getPseudo());
