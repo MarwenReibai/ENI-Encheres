@@ -1,4 +1,7 @@
 /build/
 .settings/
+<<<<<<< HEAD
 .classpath
+=======
+>>>>>>> 9b1d15ce4fb582d689ced1377986cc970cc91d9d
 /bin/

@@ -1,6 +1,6 @@
 package fr.eni.encheres.bo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Enchere {
 	private Date dateEnchere;
@@ -15,10 +15,10 @@ public class Enchere {
 		this.montant_enchere = montant_enchere;
 	}
 	// getter and setter
-	public Date getdateEnchere() {
+	public Date getDateEnchere() {
 		return dateEnchere;
 	}
-	public void setDateEnchère(Date dateEnchere) {
+	public void setDateEnchere(Date dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 	public float getMontant_enchere() {
@@ -29,8 +29,10 @@ public class Enchere {
 	}
 	//to string
 	@Override
-	public java.lang.String toString() {
-		return "Enchère [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + "]";
+	public String toString() {
+		return "Enchere [dateEnchere=" + dateEnchere + ", montant_enchere=" + montant_enchere + "]";
 	}
 	
 	}
+
+	
