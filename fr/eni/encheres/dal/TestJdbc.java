@@ -11,7 +11,7 @@ public class TestJdbc {
 
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
 
-			String url = "jdbc:sqlserver://localhost:1433;databaseName=Encheres";
+			String url = "jdbc:sqlserver://localhost:1433;databaseName=Encheres;trustServerCertificate=true";
 			Connection connexion = DriverManager.getConnection(url, "sa", "Pa$$w0rd");
 
 			System.out.println("Connexion OK");
