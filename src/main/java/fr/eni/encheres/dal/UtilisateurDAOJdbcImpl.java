@@ -33,7 +33,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	
 	///////////////////////////////////////////////////////////////
-	
+	@Override
 	public void insert(Utilisateur utilisateur) throws DALException {
 		
 		try {
@@ -55,7 +55,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 	
 	///////////////////////////////////////////////////////////////
-	
+	@Override
     public Utilisateur selectById(int id) throws DALException {
     	
     	Utilisateur utilisateur = null;
@@ -77,7 +77,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     }
     
     ///////////////////////////////////////////////////////////////
-
+	@Override
     public Utilisateur selectByPseudo(String pseudo) throws DALException {
     	
     	Utilisateur utilisateur = null;
@@ -99,7 +99,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     }
 	
     ///////////////////////////////////////////////////////////////
-    
+	@Override
     public void update(Utilisateur utilisateur) throws DALException {
     	
     	try {
@@ -116,7 +116,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     }
     
     ///////////////////////////////////////////////////////////////
-    
+	@Override
     public void delete(Utilisateur utilisateur) throws DALException {
     	try {
 			PreparedStatement ps = JdbcTools.getConnection().prepareStatement(DELETE);
