@@ -43,16 +43,16 @@ body {
 </head>
 <body class="text-center">
 	<main class="form-signin w-100 m-auto">
-  <form>
+  <form method="POST" action="/Encheres/ServletLogin">
 	<h1>Encheres</h1>
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+      <input type="text" name="nom_pseudo" class="form-control" id="floatingInput" placeholder="EverybodyCallMeGeorgio">
+      <label for="floatingInput">Pseudo</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" name="nom_pass" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
 

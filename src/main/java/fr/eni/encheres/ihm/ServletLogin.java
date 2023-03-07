@@ -1,6 +1,9 @@
 package fr.eni.encheres.ihm;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dal.DALException;
 
 /**
  * Servlet implementation class ServletLogin
@@ -28,7 +35,58 @@ public class ServletLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//String pseudo = request.getParameter("nom_pseudo");
+		//String pass = request.getParameter("nom_pass");
+		//PrintWriter writer_pass = response.getWriter().append(pseudo);
+		//PrintWriter writer_pseudo = response.getWriter().append(pseudo);
 		doGet(request, response);
+		
+		
+		try {
+			Utilisateur utilisateur = connectUser(request);
+			response.sendRedirect(request.getContextPath()+"/acceuil");
+		} catch (ServletException s) {
+			request.setAttribute("erreur", s.getMessage());
+			request.getRequestDispatcher("/WEB-INF/JSP/Login.jsp").forward(request,response);
+			
+			s.printStackTrace();
+		} catch (DALException e) {
+			request.getRequestDispatcher("/WEB-INF/JSP/Login.jsp").forward(request,response);
+			e.printStackTrace();
+		}
+		
+		
 	}
+	
+	private Utilisateur connectUser(HttpServletRequest request) throws ServletException, DALException {
+		UtilisateurManager utilisateurManager = new UtilisateurManager();
+		String pseudoOk = PseudoParametreReader(request);
+		String passOk = MdpParametreReader(request);
+		Utilisateur utilisateur = utilisateurManager.getUtilisateurByPseudo(pseudoOk);
+		if (utilisateur.getMotDePasse() != passOk) {
+			throw new ServletException("Mot de passe invalide");
+		}
+		return utilisateur;
+	}
+	
+    private String PseudoParametreReader(HttpServletRequest request) throws ServletException {
+        String pseudo;
+        pseudo = request.getParameter("nom_pseudo");
+        if(pseudo==null || pseudo.trim().equals(""))
+        {
+        	throw new ServletException("Pseudo invalide");
+        }
+        return pseudo;
+    }
+	
+    private String MdpParametreReader(HttpServletRequest request) throws ServletException {
+        String pass;
+        pass = request.getParameter("nom_pass");
+        if(pass==null || pass.trim().equals(""))
+        {
+        	throw new ServletException("Mot de passe invalide");
+        }
+        return pass;
+    }
 
 }
