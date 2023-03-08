@@ -16,4 +16,8 @@ public interface ArticleVenduDAO {
 
 	void delete(int idArticle) throws DALException;
 
+	ArticleVendu selectBynomArticle(String nomArticle);
+
+	void delete(ArticleVendu articleVendu);
+
 }

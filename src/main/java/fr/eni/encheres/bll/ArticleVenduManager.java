@@ -30,7 +30,7 @@ public class ArticleVenduManager {
 
 	}
 
-	public Utilisateur getArticleVenduByomArticle (String nomArticle) throws DALException {
+	public ArticleVendu getArticleVenduByomArticle (String nomArticle) throws DALException {
 		return dao.selectBynomArticle(nomArticle);
 
 	}
