@@ -30,7 +30,11 @@ public class UtilisateurManager {
 	}
 	
 	public Utilisateur getUtilisateurByPseudo (String pseudo) throws DALException {
-		return dao.selectByPseudo(pseudo);
+		Utilisateur utilisateur = dao.selectByPseudo(pseudo);
+		if (utilisateur == null) {
+			throw new DALException ("Aucun compte n'est lié à ces identifiants. Veuillez réessayer ou vous inscrire. ");
+		}
+		return utilisateur;
 		
 	}
 	

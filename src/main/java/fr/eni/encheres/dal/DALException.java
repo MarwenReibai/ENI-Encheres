@@ -16,11 +16,11 @@ public class DALException extends Exception {
 		}
 
 		//Méthodes
-		@Override
-		public String getMessage() {
-			StringBuffer sb = new StringBuffer("Couche DAL - ");
-			sb.append(super.getMessage());
+		//@Override
+		//public String getMessage() {
+		//	StringBuffer sb = new StringBuffer("Couche DAL - ");
+		//	sb.append(super.getMessage());
 			
-			return sb.toString() ;
-		}
+		//	return sb.toString() ;
+		//}
 }

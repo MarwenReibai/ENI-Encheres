@@ -93,6 +93,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     		JdbcTools.closeConnection();
     	} catch (SQLException e){
     		e.printStackTrace();
+    		throw new DALException ("Une erreur est survenue");
     	}
 		return utilisateur;
     	
