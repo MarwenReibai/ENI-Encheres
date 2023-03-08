@@ -55,7 +55,16 @@ body {
       <input type="password" name="nom_pass" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
-
+    <%
+    	String erreur = (String)request.getAttribute("erreur");
+    if ( erreur != null) {
+    %>
+    
+    <div class="alert alert-danger" role="alert">
+  <%= erreur %>
+</div>
+	<% } %>
+ 
     <!--<div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me

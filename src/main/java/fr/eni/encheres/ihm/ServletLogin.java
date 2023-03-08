@@ -29,6 +29,7 @@ public class ServletLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/JSP/Login.jsp");
 		rd.forward(request, response);
+		//to add :empecher user de s'inscrire/se connecter si l'user est déjà connecté
 	}
 
 	/**
@@ -39,18 +40,15 @@ public class ServletLogin extends HttpServlet {
 		//String pass = request.getParameter("nom_pass");
 		//PrintWriter writer_pass = response.getWriter().append(pseudo);
 		//PrintWriter writer_pseudo = response.getWriter().append(pseudo);
-		doGet(request, response);
+		//doGet(request, response);
 		
 		
 		try {
 			Utilisateur utilisateur = connectUser(request);
-			response.sendRedirect(request.getContextPath()+"/acceuil");
-		} catch (ServletException s) {
-			request.setAttribute("erreur", s.getMessage());
-			request.getRequestDispatcher("/WEB-INF/JSP/Login.jsp").forward(request,response);
-			
-			s.printStackTrace();
-		} catch (DALException e) {
+			//to add: garder session user connecté 
+			response.sendRedirect(request.getContextPath()+"/accueil");
+		} catch (Exception e) {
+			request.setAttribute("erreur", e.getMessage());
 			request.getRequestDispatcher("/WEB-INF/JSP/Login.jsp").forward(request,response);
 			e.printStackTrace();
 		}
@@ -63,7 +61,8 @@ public class ServletLogin extends HttpServlet {
 		String pseudoOk = PseudoParametreReader(request);
 		String passOk = MdpParametreReader(request);
 		Utilisateur utilisateur = utilisateurManager.getUtilisateurByPseudo(pseudoOk);
-		if (utilisateur.getMotDePasse() != passOk) {
+		
+		if (!utilisateur.getMotDePasse().equals(passOk)) {
 			throw new ServletException("Mot de passe invalide");
 		}
 		return utilisateur;
