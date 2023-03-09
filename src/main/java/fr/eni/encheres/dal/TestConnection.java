@@ -10,7 +10,6 @@ public class TestConnection {
 
 	public static void main(String[] args) {
 		  try {
-			  
 			DriverManager.registerDriver(new SQLServerDriver());
 			Connection con = null;
 			//String url ="jdbc:sqlserver://localhost:1433;databaseName=Encheres;integratedSecurity=true;encrypt=true;trustServerCertificate=false;trustStore=storeName;trustStorePassword=storePassword";
@@ -24,8 +23,6 @@ public class TestConnection {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-
-		  
 	}
 
 }
