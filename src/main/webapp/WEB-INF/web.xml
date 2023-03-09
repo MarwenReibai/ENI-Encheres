@@ -11,12 +11,12 @@
   </welcome-file-list>
 
 <servlet>
-<servlet-name>TestAccueil</servlet-name>
-<servlet-class>fr.eni.encheres.ihm.TestServlet</servlet-class>
+<servlet-name>PageD'Acc</servlet-name>
+<servlet-class>fr.eni.encheres.ihm.ServletPageD'Acc</servlet-class>
 
 </servlet>
 <servlet-mapping>
-<servlet-name>TestAccueil</servlet-name>
+<servlet-name>PageD'Acc</servlet-name>
 <url-pattern>/</url-pattern>
 </servlet-mapping>
 

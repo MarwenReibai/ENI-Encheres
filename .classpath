@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+	<classpathentry excluding="fr/eni/encheres/bll/ArticleVenduManager.java" kind="src" path="src/main/java"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -14,5 +14,12 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mssql-jdbc-11.2.3.jre17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/asus/Desktop/apache-tomcat-9.0.71/lib/servlet-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/asus/Desktop/apache-tomcat-9.0.71/tomcat-9.0-doc/servletapi/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/main/java/fr/eni/encheres/bll/ArticleVenduManager.java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-17"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
