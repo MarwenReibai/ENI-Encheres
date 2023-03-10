@@ -16,7 +16,7 @@ private static ArticleVenduDAO articleVenduDAO;
 	
 	public static ArticleVenduDAO getArticleVenduDAO() throws DALException{
 		if (articleVenduDAO == null) {
-			articleVenduDAO = new ArticleVenduDAOjdbclmp();
+			articleVenduDAO = new ArticleVenduDAOJdbclmpl();
 		}
 		return articleVenduDAO;
 	}

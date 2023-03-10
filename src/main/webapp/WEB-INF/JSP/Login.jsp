@@ -43,7 +43,7 @@ body {
 </head>
 <body class="text-center">
 	<main class="form-signin w-100 m-auto">
-  <form method="POST" action="/Encheres/ServletLogin">
+  <form method="POST" action="/Encheres/Login">
 	<h1>ENI-Encheres</h1>
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -72,7 +72,7 @@ body {
     </div>-->
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
   </form>
-  <a class="w-100 btn btn-lg btn-secondary mt-2" href="<%=request.getContextPath()%>/Register">Registrer</a>
+  <a class="w-100 btn btn-lg btn-secondary mt-2" href="<%=request.getContextPath()%>/Register">Register</a>
 </main>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

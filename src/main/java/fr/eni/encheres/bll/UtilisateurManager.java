@@ -19,9 +19,13 @@ public class UtilisateurManager {
 	
 	///////////
 	
-	public void createUtilisateur(Utilisateur utilisateur) throws DALException {
-		// à ajouter : if/else utilisateurvalide & checkforuniquepseudo
-		dao.insert(utilisateur);
+	public boolean createUtilisateur(Utilisateur utilisateur) throws DALException {
+		if(dao.checkUnique(utilisateur)) {
+			dao.insert(utilisateur);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public Utilisateur getUtilisateurById (int id) throws DALException {
