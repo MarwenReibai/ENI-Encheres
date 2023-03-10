@@ -12,9 +12,9 @@ import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
-import fr.eni.encheres.bo.*;
+import fr.eni.encheres.bo.ArticleVendu;
 
-public class ArticleVenduDAOjdbclmp implements ArticleVenduDAO {
+public class ArticleVenduDAOJdbclmpl implements ArticleVenduDAO {
 
 
 	private static final String sqlSelectByNo = "select noArticleVendu,nomArticleVendu,description,dateDebutEncheres,dateFinEncheres,miseAPrix,prixVente,etatVente"
@@ -29,7 +29,7 @@ public class ArticleVenduDAOjdbclmp implements ArticleVenduDAO {
 	// constructeur
 	
 
-		public  ArticleVenduDAOjdbclmp() {
+		public  ArticleVenduDAOJdbclmpl() {
 
 				try {
 					DriverManager.registerDriver(new SQLServerDriver());
@@ -154,6 +154,24 @@ public class ArticleVenduDAOjdbclmp implements ArticleVenduDAO {
 			rqt.setFloat(5, art.getMiseAPrix());
 			rqt.setFloat(6, art.getPrixVente());
 			rqt.setString(7, art.getEtatVente());
+		}
+
+
+
+
+		@Override
+		public ArticleVendu selectBynomArticle(String nomArticle) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+
+
+		@Override
+		public void delete(ArticleVendu articleVendu) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 

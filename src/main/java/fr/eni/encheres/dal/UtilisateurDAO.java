@@ -9,6 +9,7 @@ public interface UtilisateurDAO {
 	public Utilisateur selectByPseudo(String pseudo) throws DALException;
 	public void update(Utilisateur utilisateur) throws DALException;
 	public void delete(Utilisateur utilisateur) throws DALException;
+	public boolean checkUnique(Utilisateur utilisateur) throws DALException;
 	
 }
 

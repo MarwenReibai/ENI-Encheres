@@ -13,11 +13,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	// attributes :
 	
-	private static final String INSERT = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,codePostal,ville,mot_de_passe,credit,admnistrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_BY_ID = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
 	private static final String UPDATE = "UPDATE UTILISATEURS SET "+"pseudo = ?"+"nom = ?"+"prenom = ?"+"email = ?"+"telephone = ?"+"rue = ?"+"code_postal = ?"+"ville = ?"+"mot_de_passe = ?"+"credit = ?"+"administrateur = ?"+"WHERE no_utilisateur = ?";
 	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ? ";
+	private static final String SELECT_BY_PSEUDO_OR_EMAIL = "SELECT * FROM UTILISATEURS WHERE email LIKE ? OR pseudo LIKE ?";
 	
 	// loading connection :
 	
@@ -164,6 +165,26 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                 rs.getInt("credit"),
                 rs.getBoolean("administrateur")
 				);
+	}
+
+	@Override
+	public boolean checkUnique(Utilisateur utilisateur) throws DALException {
+		try {
+			boolean result = true;
+			PreparedStatement ps = JdbcTools.getConnection().prepareStatement(SELECT_BY_PSEUDO_OR_EMAIL);
+    		ps.setString(2, utilisateur.getPseudo());
+    		ps.setString(1, utilisateur.getEmail());
+    		ps.execute();
+    		ResultSet rs = ps.getResultSet();
+    		if (rs.next()) {
+    			result = false;
+    		}
+    		JdbcTools.closeConnection();
+    		return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+    		throw new DALException ("Une erreur est survenue");
+		}
 	}
 	
 	
