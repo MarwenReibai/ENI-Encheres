@@ -40,9 +40,6 @@ public class ArticleVenduDAOJdbclmpl implements ArticleVenduDAO {
 
 				}
 
-
-
-
 		@Override
 		public ArticleVendu selectById(int no) throws DALException {
 			ArticleVendu art = null;
